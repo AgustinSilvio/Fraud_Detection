@@ -67,5 +67,5 @@ target/
 # ipynb checkpoints
 .ipynb_checkpoints
 
-# functions
+# functions (private)
 functions/
