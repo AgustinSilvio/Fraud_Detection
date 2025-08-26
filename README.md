@@ -4,7 +4,7 @@ Tecnicas de machine learning para detectar fraudes. Ejercicio teórico.
   
 ## Installation guide
 
-Please read [install.md](install.md) for details on how to set up this project.
+Please read [install.md](install.md) for details on how to set up this project. There is a folder with functions that was gitignore.
 
 ## Project Organization
 
