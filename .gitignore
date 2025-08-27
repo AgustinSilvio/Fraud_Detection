@@ -61,6 +61,51 @@ target/
 # pyenv python configuration file
 .python-version
 
+
+### Data Science Specific ###
+# Data files (avoid committing large datasets)
+data/
+*.csv
+*.json
+*.parquet
+*.feather
+*.h5
+*.hdf5
+*.pkl
+*.pickle
+*.npy
+*.npz
+
+# Model files (can be very large)
+models/
+*.pth
+*.pt
+*.model
+*.joblib
+
+# Environment files (except those needed for reproduction)
+.env
+.env.local
+.env.*.local
+
+# Large visualization files
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.mp4
+*.avi
+
+# Logs and outputs
+logs/
+outputs/
+results/
+*.log
+
+# IDE specific (add based on your editor)
+.vscode/
+.idea/
+
 # exclude data from source control by default
 /data/
 
