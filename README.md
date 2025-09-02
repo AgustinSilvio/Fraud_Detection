@@ -27,7 +27,11 @@ Por ejemplo: si un usuario recarga su saldo frecuentemente y gasta en comercios 
   
 # Guía de instalación
 
+<<<<<<< HEAD
 Por favor lea [install.md](install.md) for details on how to set up this project.
+=======
+Please read [install.md](install.md) for details on how to set up this project. There is a folder with functions that was gitignore.
+>>>>>>> ea0d539c5da49f5519af694e370a3c72b80ca09b
 
 # Organización del proyecto
 
@@ -80,6 +84,7 @@ Por favor lea [install.md](install.md) for details on how to set up this project
             └── visualize.py
 
 ---
+<<<<<<< HEAD
 
 
 ## Notebooks
@@ -91,3 +96,6 @@ Por favor lea [install.md](install.md) for details on how to set up this project
 - [04-RadomForest.ipynb](notebooks/04-RadomForest.ipynb): Entrenamiento y evaluación de modelos Random Forest para detección de fraude.
 - [05-XGBoost.ipynb](notebooks/05-XGBoost.ipynb): Entrenamiento y evaluación de modelos XGBoost para detección de fraude.
 - [06-Comparación.ipynb](notebooks/06-Comparación.ipynb): Comparación de los resultados de los modelos Random Forest y XGBoost
+=======
+Project based on the [cookiecutter conda data science project template](https://github.com/jvelezmagic/cookiecutter-conda-data-science).
+>>>>>>> ea0d539c5da49f5519af694e370a3c72b80ca09b

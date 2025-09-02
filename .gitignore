@@ -84,6 +84,7 @@ history.sqlite  # IPython command history database
 ### DATA, MODELS, AND LOGS - CRITICAL TO IGNORE ###
 ###############################################
 
+<<<<<<< HEAD
 # Data directories and files - DO NOT COMMIT RAW DATA
 # (Data should be fetched via a script or kept in cloud storage)
 /data/  # Common data directory
@@ -95,6 +96,55 @@ history.sqlite  # IPython command history database
 *.feather  # Fast columnar storage format file
 *.h5  # Hierarchical Data Format file (HDF5)
 *.hdf5  # Hierarchical Data Format file (HDF5)
+=======
+
+### Data Science Specific ###
+# Data files (avoid committing large datasets)
+data/
+*.csv
+*.json
+*.parquet
+*.feather
+*.h5
+*.hdf5
+*.pkl
+*.pickle
+*.npy
+*.npz
+
+# Model files (can be very large)
+models/
+*.pth
+*.pt
+*.model
+*.joblib
+
+# Environment files (except those needed for reproduction)
+.env
+.env.local
+.env.*.local
+
+# Large visualization files
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.mp4
+*.avi
+
+# Logs and outputs
+logs/
+outputs/
+results/
+*.log
+
+# IDE specific (add based on your editor)
+.vscode/
+.idea/
+
+# exclude data from source control by default
+/data/
+>>>>>>> ea0d539c5da49f5519af694e370a3c72b80ca09b
 
 # Serialized models and weights - CAN BE VERY LARGE
 /models/  # Directory for trained model binaries
@@ -107,6 +157,7 @@ history.sqlite  # IPython command history database
 *.tflite  # TensorFlow Lite model
 *.onnx  # Open Neural Network Exchange model
 
+<<<<<<< HEAD
 # Training logs and outputs
 /logs/  # Directory for training log files (e.g., TensorBoard)
 /output/  # Directory for script outputs
@@ -165,3 +216,7 @@ __pypackages__/  # PEP 582 packages directory
 # notebooks/       # Your Jupyter notebooks (.ipynb)
 # scripts/         # Utility and data processing scripts
 # README.md        # Project documentation
+=======
+# functions (private)
+functions/
+>>>>>>> ea0d539c5da49f5519af694e370a3c72b80ca09b
