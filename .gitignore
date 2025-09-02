@@ -1,71 +1,167 @@
+### Ultimate Gitignore for Data Science Projects ###
+# This file tells Git which files and folders to ignore, keeping your repository clean,
+# focused on source code, and free from large or sensitive data.
+
+###############################################
+### OPERATING SYSTEM GENERATED FILES ###
+###############################################
+
+# macOS - System and thumbnail files
+.DS_Store  # macOS folder metadata file
+.AppleDouble  # macOS resource fork file
+.LSOverride  # macOS specific file
+Icon?  # Custom folder icons on macOS
+._*  # macOS thumbnail and metadata files
+
+# Windows - Thumbnail and system files
+Thumbs.db  # Windows thumbnail cache
+ehthumbs.db  # Older Windows thumbnail cache
+[Dd]esktop.ini  # Windows folder customization file
+
+# Linux - Temporary and trash files
+*~  # Backup files created by some text editors
+.directory  # KDE directory preferences
+.Trash-*  # Linux trash folders
+.nfs*  # Network File System temporary files
+
+###############################################
+### PYTHON DEVELOPMENT ###
+###############################################
+
 # Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
-*$py.class
+__pycache__/  # Directory of Python bytecode cache files
+*.py[cod]  # Actual bytecode files (.pyc, .pyo)
+*$py.class  # Jython (Python for JVM) bytecode
 
-# C extensions
-*.so
-
-# Distribution / packaging
-.Python
-env/
+# Package and distribution files
+# (These are generated during setup/build and should not be versioned)
 build/
-develop-eggs/
 dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
 *.egg-info/
 .installed.cfg
 *.egg
-
-# PyInstaller
-#  Usually these files are written by a python script from a template
-#  before PyInstaller builds the exe, so as to inject date/other infos into it.
 *.manifest
 *.spec
+wheels/
 
 # Installer logs
 pip-log.txt
 pip-delete-this-directory.txt
 
-# Unit test / coverage reports
-htmlcov/
-.tox/
-.coverage
-.coverage.*
-.cache
-nosetests.xml
-coverage.xml
-*,cover
-.hypothesis/
+# Virtual environments - NEVER version control a virtual env
+# (The environment is reproducible from requirements.txt, not by copying files)
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
 
-# Translations
-*.mo
-*.pot
+# Testing and coverage
+.tox/  # tox virtualenvs
+.nox/  # nox virtualenvs
+.coverage  # Coverage.py coverage data
+.coverage.*  # Intermediate coverage files
+htmlcov/  # HTML coverage report
+.pytest_cache/  # Pytest cache
+.cache  # General cache directory
 
-# Django stuff:
-*.log
+###############################################
+### JUPYTER NOTEBOOKS & IPYTHON ###
+###############################################
 
-# Sphinx documentation
-docs/_build/
+# Jupyter checkpoint directories - auto-saved notebook states
+.ipynb_checkpoints/  # Root checkpoint directory
+*/.ipynb_checkpoints/  # Checkpoints in any subdirectory
 
-# PyBuilder
-target/
+# IPython configuration and history
+profile_default/  # Default IPython profile directory
+ipython_config.py  # IPython configuration file
+history.sqlite  # IPython command history database
 
-# pyenv python configuration file
-.python-version
+###############################################
+### DATA, MODELS, AND LOGS - CRITICAL TO IGNORE ###
+###############################################
 
-# exclude data from source control by default
-/data/
+# Data directories and files - DO NOT COMMIT RAW DATA
+# (Data should be fetched via a script or kept in cloud storage)
+/data/  # Common data directory
+/input/  # Alternative common data directory
+*.csv  # Comma-separated values file
+*.tsv  # Tab-separated values file
+*.json  # JavaScript Object Notation file
+*.parquet  # Columnar storage format file
+*.feather  # Fast columnar storage format file
+*.h5  # Hierarchical Data Format file (HDF5)
+*.hdf5  # Hierarchical Data Format file (HDF5)
 
-# ipynb checkpoints
-.ipynb_checkpoints
+# Serialized models and weights - CAN BE VERY LARGE
+/models/  # Directory for trained model binaries
+*.pkl  # Python pickle file
+*.pickle  # Python pickle file
+*.joblib  # scikit-learn joblib file
+*.pth  # PyTorch model file
+*.pt  # PyTorch model file
+*.h5  # Keras/TensorFlow model (can also be data)
+*.tflite  # TensorFlow Lite model
+*.onnx  # Open Neural Network Exchange model
 
-# functions (private)
-functions/
+# Training logs and outputs
+/logs/  # Directory for training log files (e.g., TensorBoard)
+/output/  # Directory for script outputs
+/outputs/  # Alternative directory for outputs
+/results/  # Directory for experiment results
+*.log  # Generic log file
+
+###############################################
+### IDE AND EDITOR CONFIGURATION ###
+###############################################
+
+# PyCharm/IntelliJ IDEA
+.idea/  # JetBrains IDE project directory
+*.iml  # JetBrains IDE module file
+
+# VS Code
+.vscode/  # VS Code workspace settings
+!.vscode/settings.json  # KEEP project settings (optional)
+!.vscode/tasks.json  # KEEP project tasks (optional)
+!.vscode/launch.json  # KEEP debug configurations (optional)
+!.vscode/extensions.json  # KEEP recommended extensions (optional)
+
+# Other editors
+.ropeproject  # Rope (Python refactoring library) project settings
+.spyderproject  # Spyder IDE project settings
+.spyproject  # Spyder IDE project settings
+
+###############################################
+### ENVIRONMENT AND CONFIGURATION FILES ###
+###############################################
+
+# Local environment variables - NEVER COMMIT SECRETS!
+# (Keep a `.env.template` file for reference instead)
+.env
+.env.local
+.env.*.local
+.secrets
+
+# Poetry package manager (usually commit poetry.lock for reproducibility)
+poetry.toml  # Local poetry configuration
+
+# PDM package manager
+.pdm.toml  # PDM project configuration
+__pypackages__/  # PEP 582 packages directory
+
+###############################################
+### NOTE: WHAT YOU *SHOULD* COMMIT ###
+###############################################
+
+# !!!!!!!!!! DO NOT IGNORE THESE !!!!!!!!!!!!!
+# requirements.txt  # Python dependencies list
+# environment.yml  # Conda environment definition
+# pyproject.toml   # Modern Python project config
+# setup.py         # Package setup script (if applicable)
+# src/             # Your actual source code
+# notebooks/       # Your Jupyter notebooks (.ipynb)
+# scripts/         # Utility and data processing scripts
+# README.md        # Project documentation
