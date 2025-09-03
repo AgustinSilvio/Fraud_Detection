@@ -16,16 +16,16 @@ data = pd.DataFrame({
     'transaction_datetime': dates,
 
     # Transaction amount (exponential distribution)
-    # - 80% normal transactions (mean ~$50)
-    # - 20% potential frauds (mean ~$500)
+    # - 80% normal transactions (mean ~$500)
+    # - 20% potential frauds (mean ~$8000)
     'amount': np.concatenate([
-        np.random.exponential(scale=50, size=int(n_samples*0.8)),  # Normal transactions
-        np.random.exponential(scale=500, size=int(n_samples*0.2))  # Potential frauds
+        np.random.exponential(scale=500, size=int(n_samples*0.8)).round(2),  # Normal transactions
+        np.random.exponential(scale=8000, size=int(n_samples*0.2)).round(2)  # Potential frauds
     ]),
 
     # User demographics
     'user_age': np.random.randint(18, 75, size=n_samples),  # Age between 18-75
-    'user_income': np.random.normal(50000, 15000, n_samples).astype(int),  # Annual income (~N(50k,15k))
+    'user_income': np.random.normal(90000, 15000, n_samples).astype(int),  # Annual income (~N(90k,15k))
 
     # Device information
     'device_type': np.random.choice(['mobile','desktop','tablet'], n_samples, p=[0.6, 0.35, 0.05]),  # 60% mobile
@@ -55,18 +55,26 @@ data['transaction_month'] = data['transaction_datetime'].dt.month  # Month (1-12
 data['is_night'] = ((data['transaction_hour'] >= 22) | (data['transaction_hour'] <= 6)).astype(int)  # 10pm-6am
 data['is_weekend'] = (data['transaction_day'] >= 5).astype(int)  # Saturday/Sunday
 
+# Feature engineering
+data['amount_to_income_ratio'] = data['amount'] / (data['user_income'] / 12)  # Monthly income ratio
+data['avg_product_price'] = data['amount'] / data['num_products']
+data['high_value_transaction'] = (data['amount'] > 1000).astype(int)
+data['new_customer'] = (data['account_age_days'] < 90).astype(int)
+data['unusual_device_combo'] = ((data['device_type'] == 'mobile') & (data['os_type'] == 'Windows')).astype(int)
+
 # Updated fraud probability with clear pattern explanations
 fraud_prob = (
     0.001 +  # Base fraud rate (0.1%)
 
     # Risk factors with weights:
-    (data['amount'] > 300) * 0.03 +  # Large transactions 3% risk boost
-    (data['is_night'] == 1) * 0.02 +  # Night transactions 2% risk boost
-    (data['country'].isin(['MX', 'ARS'])) * 0.01 +  # Risky countries 1% boost
+    (data['amount'] > 1000) * 0.09 +  # Large transactions 9% risk boost
+    (data['is_night'] == 1) * 0.2 +  # Night transactions 20% risk boost
+    (data['country'].isin(['MX', 'ARS'])) * 0.05 +  # Risky countries 5% boost
     (data['device_type'] == 'mobile') * 0.005 +  # Mobile slightly riskier
     (data['account_age_days'] < 30) * 0.02 +  # New accounts 2% boost
     (data['previous_chargebacks'] > 0) * 0.05 +  # Past chargebacks 5% boost
-
+    (data['repeat_customer'] == 0) * 0.03 +  # First-time customers 3% boost
+    (data['unusual_device_combo'] == 1) * 0.8 +
     # NEW: Deceased users - all transactions are fraud (overrides other factors)
     (data['is_dead_user'] == 1) * 0.99  # 99% probability (effectively 100% when thresholded)
 )
@@ -78,13 +86,9 @@ data['is_fraud'] = np.random.binomial(1, fraud_prob) #Bernoulli
 # Force all dead user transactions to be fraud (per business rule)
 data.loc[data['is_dead_user'] == 1, 'is_fraud'] = 1
 
-# Feature engineering
-data['amount_to_income_ratio'] = data['amount'] / (data['user_income'] / 12)  # Monthly income ratio
-data['avg_product_price'] = data['amount'] / data['num_products']
-data['high_value_transaction'] = (data['amount'] > 500).astype(int)
-data['new_customer'] = (data['account_age_days'] < 90).astype(int)
-data['unusual_device_combo'] = ((data['device_type'] == 'mobile') & (data['os_type'] == 'Windows')).astype(int)
 
+# Crear una columna de ID de usuario única
+data['user_id'] = range(1, len(data) + 1)
 # Drop original datetime column
 
 #data.drop('transaction_datetime', axis=1, inplace=True)
