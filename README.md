@@ -91,6 +91,6 @@ Por favor lea [install.md](install.md) para detalles sobre cómo configurar este
 - [01-EDA.ipynb](notebooks/01-EDA.ipynb): Análisis exploratorio de datos y visualización de patrones de fraude.
 - [02-Preparation.ipynb](notebooks/02-Preparation.ipynb): Preparación de los datos.
 - [03-PCA.ipynb](notebooks/03-PCA.ipynb): PCA.
-- [04-RadomForest.ipynb](notebooks/04-RadomForest.ipynb): Entrenamiento y evaluación de modelos Random Forest para detección de fraude.
-- [05-XGBoost.ipynb](notebooks/05-XGBoost.ipynb): Entrenamiento y evaluación de modelos XGBoost para detección de fraude.
-- [06-Comparación.ipynb](notebooks/06-Comparación.ipynb): Comparación de los resultados de los modelos Random Forest y XGBoost
+- [04-RadomForest.ipynb](notebooks/04-RadomForest.ipynb): Entrenamiento y evaluación de modelos Random Forest para detección de fraude. (En proceso)
+- [05-XGBoost.ipynb](notebooks/05-XGBoost.ipynb): Entrenamiento y evaluación de modelos XGBoost para detección de fraude. (En proceso)
+- [06-Comparación.ipynb](notebooks/06-Comparación.ipynb): Comparación de los resultados de los modelos Random Forest y XGBoost. (En proceso)
